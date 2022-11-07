@@ -10,12 +10,20 @@ def main():
     # print("3) Exit")
     # option = input();
     # print(option)
-    root = Tk()
-    frm = ttk.Frame(root, padding=10)
-    frm.grid()
-    ttk.Label(frm, text="Hello World!").grid(column=0, row=0)
-    ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
-    root.mainloop()
-    input("Press enter to exit ;)")
+    options = [
+        "Push Stock Configuration", 
+        "Push Custom Configuration"
+    ]
+    var="Test"
+    gui = Tk(className='Mawson Network Mass Config Tool')
+# set window size
+    gui.geometry("700x500")
+    gui.resizable(False, False)
+    frame = ttk.Frame(gui)
+    Label(gui, text = "Password").place(x = 40, y = 100)
+    Label(gui, text = "C")
+    option = StringVar(value="Select an option")
+    OptionMenu(gui, option, *options ).place(x = 170, y = 80)
+    gui.mainloop() 
 
 main()
