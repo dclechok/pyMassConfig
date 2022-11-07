@@ -1,0 +1,87 @@
+enable
+!
+conf t
+!
+hostname 10.24.8.200
+no aaa new-model
+system mtu routing 1500
+ip dhcp relay information trust-all
+ip dhcp use subscriber-id client-id
+ip dhcp subscriber-id interface-name
+!
+ip dhcp pool data
+   import all
+ip access-list extended BLOCK_DHCP
+deny udp any any eq bootpc
+deny udp any any eq bootps
+permit ip any any
+!
+interface Fastethernet0/48
+ip access-group BLOCK_DHCP in
+!
+ip dhcp pool Port_Based
+network 10.24.0.0 255.255.0.0
+default-router 10.24.0.1
+dns-server 8.8.8.8 4.2.2.2
+reserved-only
+address 10.24.8.1 client-id "Fa0/1" ascii
+address 10.24.8.2 client-id "Fa0/2" ascii
+address 10.24.8.3 client-id "Fa0/3" ascii
+address 10.24.8.4 client-id "Fa0/4" ascii
+address 10.24.8.5 client-id "Fa0/5" ascii
+address 10.24.8.6 client-id "Fa0/6" ascii
+address 10.24.8.7 client-id "Fa0/7" ascii
+address 10.24.8.8 client-id "Fa0/8" ascii
+address 10.24.8.9 client-id "Fa0/9" ascii
+address 10.24.8.10 client-id "Fa0/10" ascii
+address 10.24.8.11 client-id "Fa0/11" ascii
+address 10.24.8.12 client-id "Fa0/12" ascii
+address 10.24.8.13 client-id "Fa0/13" ascii
+address 10.24.8.14 client-id "Fa0/14" ascii
+address 10.24.8.15 client-id "Fa0/15" ascii
+address 10.24.8.16 client-id "Fa0/16" ascii
+address 10.24.8.17 client-id "Fa0/17" ascii
+address 10.24.8.18 client-id "Fa0/18" ascii
+address 10.24.8.19 client-id "Fa0/19" ascii
+address 10.24.8.20 client-id "Fa0/20" ascii
+address 10.24.8.21 client-id "Fa0/21" ascii
+address 10.24.8.22 client-id "Fa0/22" ascii
+address 10.24.8.23 client-id "Fa0/23" ascii
+address 10.24.8.24 client-id "Fa0/24" ascii
+address 10.24.8.25 client-id "Fa0/25" ascii
+address 10.24.8.26 client-id "Fa0/26" ascii
+address 10.24.8.27 client-id "Fa0/27" ascii
+address 10.24.8.28 client-id "Fa0/28" ascii
+address 10.24.8.29 client-id "Fa0/29" ascii
+address 10.24.8.30 client-id "Fa0/30" ascii
+address 10.24.8.31 client-id "Fa0/31" ascii
+address 10.24.8.32 client-id "Fa0/32" ascii
+address 10.24.8.33 client-id "Fa0/33" ascii
+address 10.24.8.34 client-id "Fa0/34" ascii
+address 10.24.8.35 client-id "Fa0/35" ascii
+address 10.24.8.36 client-id "Fa0/36" ascii
+address 10.24.8.37 client-id "Fa0/37" ascii
+address 10.24.8.38 client-id "Fa0/38" ascii
+address 10.24.8.39 client-id "Fa0/39" ascii
+address 10.24.8.40 client-id "Fa0/40" ascii
+address 10.24.8.41 client-id "Fa0/41" ascii
+address 10.24.8.42 client-id "Fa0/42" ascii
+address 10.24.8.43 client-id "Fa0/43" ascii
+address 10.24.8.44 client-id "Fa0/44" ascii
+address 10.24.8.45 client-id "Fa0/45" ascii
+address 10.24.8.46 client-id "Fa0/46" ascii
+address 10.24.8.47 client-id "Fa0/47" ascii
+!
+no spanning-tree vlan 1
+!
+interface Vlan1
+ip address 10.24.8.200 255.255.0.0
+no shut 
+!
+ip default-gateway 10.24.0.1
+ip http server
+ip http secure-server
+!
+end
+!
+wr
